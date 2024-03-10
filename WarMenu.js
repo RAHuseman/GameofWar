@@ -22,7 +22,7 @@
 
 // After all cards have been played, display the score and declare the winner.
 
-
+// Card Class with the constructor suit, the number of the card and finally the value for the array
 class Card {
     constructor (suit, number, value){
         this.suit = suit;
@@ -33,12 +33,14 @@ class Card {
      
     }
     console.log("Welcome to the Game of War")
+    // Class Deck inside of this class I will apply the array to this.cards and include the method Shuffle Cards
+    // inside of this I run the for loop to generate a random array to pass to the two players
     class Deck {
         constructor (){
             this.cards = [];
             this.suits = ['hearts', 'spades', 'clubs', 'diamonds'];
             this.numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
-            
+        //  loop to push the class parameters to the array of this.cards and each array now has a suit, number, and the value for us to compare them.
           for (let suit of this.suits){
                 for (let i = 0; i < this.numbers.length; i++){
                    this.cards.push(new Card(suit, this.numbers[i], i));
@@ -47,7 +49,7 @@ class Card {
         // console.log(this.cards);
         }
         
-      // let arrayToShuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+      
       //method for shuffling
       shuffleCards() {
         console.log("Cards are shuffling");
@@ -65,17 +67,18 @@ class Card {
    
       
     }
-    
+    //These variables will create a new Class Deck and shuffle the arrays to pass to the players
     let newDeck = new Deck();
     let shuffledDeck = newDeck.shuffleCards();
-    
+    // Two variables to keep track of each players score.
     let player1Score = 0;
     let player2Score = 0;
-    
+    // Using the slice method to divide the array into two parts
     let player1Deck = shuffledDeck.slice(0,26);
     let player2Deck = shuffledDeck.slice(26,52);
     // console.log(player1Deck);
     // console.log(player2Deck);
+    //For loop to decide wich player will recieve the point
     for(let i =0; i < player1Deck.length; i++){
       if(player1Deck[i].value > player2Deck[i].value ){
         player1Score++;
@@ -83,7 +86,7 @@ class Card {
         player2Score++;
         } 
     }
-    
+    // below will send the message for who wins Player 1 wins, Player two wins or its a tie!!
     if(player1Score > player2Score){
       console.log("Player 1 wins");
     } else if (player2Score > player1Score) {
@@ -92,7 +95,7 @@ class Card {
       console.log("It's a tie");
     }
     
-    
+    // Below will show both player 1 score and player two
     console.log(player1Score);
     console.log(player2Score);
     
